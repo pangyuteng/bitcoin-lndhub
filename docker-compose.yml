@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+    redis:
+        image: "redis:latest"
+        ports:
+            - "6379:6379"
+        volumes:
+            - /mnt/hdd/redis:/data
+        entrypoint: redis-server --appendonly yes
+        #restart: always
+    bitcoind:
+        image: bitcoind
+        build:
+            context: bitcoind
+            dockerfile: Dockerfile
+        entrypoint: bitcoind
+        ports:
+            - "8332:8332"
+            - "8333:8333"
+            - "18332:18332"
+            - "18333:18333"
+            - "18444:18444"
+        volumes:
+            - /mnt/hdd/bitcoin:/root/.bitcoin
+    lnd:
+        image: lnd
+        build:
+            context: lnd
+            dockerfile: Dockerfile
+        depends_on:
+            - bitcoind
+        entrypoint: lnd
+        ports:
+            - "8080:8080"
+        volumes:
+            - /mnt/hdd/lnd:/root/.lnd

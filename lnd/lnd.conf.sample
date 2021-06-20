@@ -1,0 +1,17 @@
+[Application Options]
+; set external IP if not using NAT
+externalip=104.248.248.9
+; set node alias (seen in explorers)
+alias=HIVENLABSLN1
+restlisten=localhost:8080
+
+[Bitcoin]
+bitcoin.active=1
+bitcoin.mainnet=1
+bitcoin.node=bitcoind
+
+[Bitcoind]
+bitcoind.rpcuser=user
+bitcoind.rpcpass=password
+bitcoind.zmqpubrawblock=tcp://127.0.0.1:28332
+bitcoind.zmqpubrawtx=tcp://127.0.0.1:28333

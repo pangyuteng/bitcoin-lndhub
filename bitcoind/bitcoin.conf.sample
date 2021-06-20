@@ -1,0 +1,12 @@
+server=1
+txindex=1
+daemon=0
+externalip=104.248.248.9
+maxconnections=10
+rpcuser=user
+rpcpassword=password
+minrelaytxfee=0.00000000
+incrementalrelayfee=0.00000010
+zmqpubrawblock=tcp://127.0.0.1:28332
+zmqpubrawtx=tcp://127.0.0.1:28333
+rpcport=8332

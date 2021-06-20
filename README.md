@@ -47,3 +47,10 @@ https://github.com/ruimarinho/docker-bitcoin-core/blob/master/0.21/Dockerfile
 https://stadicus.github.io/RaspiBolt/raspibolt_72_zap-ios.html
 https://www.expressvpn.com/internet-privacy/how-to-set-up-a-home-server-and-use-it-as-a-bitcoin-node
 https://stadicus.github.io/RaspiBolt/raspibolt_70_troubleshooting.html
+https://github.com/lightningnetwork/lnd/issues/4422
+
+
+```
+telnet localhost 28332
+curl --user username:password -H 'content-type:text/plain;' http://localhost:28332 --data-binary '{"jsonrpc":"1.0","id":"1","method":"getmininginfo"}'
+```

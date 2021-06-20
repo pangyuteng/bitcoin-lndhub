@@ -15,11 +15,13 @@ services:
             dockerfile: Dockerfile
         command: bitcoind
         restart: always
-        ports:
-            - "8332:8332"
-            - "8333:8333"
-            - "28332:28332"
-            - "28333:28333"
+        # zero mq doesn't bind to docker network
+        network_mode: "host"
+        #ports:
+        #    - "8332:8332"
+        #    - "8333:8333"
+        #    - "28332:28332"
+        #    - "28333:28333"
         volumes:
             - /mnt/hdd/bitcoin:/root/.bitcoin
     lnd:
@@ -27,13 +29,14 @@ services:
         build:
             context: lnd
             dockerfile: Dockerfile
-        depends_on:
-            - bitcoind
+        #depends_on:
+        #    - bitcoind
         command: lnd
         restart: always
-        ports:
-            - "10009:10009"
-            #- "8080:8080"
+        network_mode: "host"
+        #ports:
+        #    - "10009:10009"
+        #    - "8080:8080"
         volumes:
             - /mnt/hdd/lnd:/root/.lnd
     hub:
@@ -41,19 +44,18 @@ services:
         build:
             context: hub
             dockerfile: Dockerfile
-        depends_on:
-            - bitcoind
-            - lnd
-            - redis
+        #depends_on:
+        #    - bitcoind
+        #    - lnd
+        #    - redis
         command: node build/index.js
         restart: always
-        ports:
-            - "3000:3000"
-            - "8080:8080"
+        network_mode: "host"
+        #ports:
+        #    - "3000:3000"
         volumes:
-            #- /mnt/hdd/hub/config.js:/opt/LndHub/config.js:ro
             - /mnt/hdd/lnd:/lnd:ro
         environment:
-            CONFIG: '{ "rateLimit": 10000, "postRateLimit": 10000, "redis": { "port": 6379, "host": "redis", "family": 4, "password": "moneyprintergobrrr", "db": 0 }, "lnd": { "url": "lnd:10009", "password":""}}'
+            CONFIG: '{ "rateLimit": 10000, "postRateLimit": 10000, "redis": { "port": 6379, "host": "localhost", "family": 4, "password": "moneyprintergobrrr", "db": 0 }, "lnd": { "url": "localhost:10009", "password":""}}'
             TLSCERT: "/lnd/tls.cert"
             MACAROON: "/lnd/data/chain/bitcoin/mainnet/admin.macaroon"

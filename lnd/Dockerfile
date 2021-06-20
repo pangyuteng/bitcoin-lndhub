@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 RUN apt-get update && \
     apt-get upgrade -yq && \
-    apt-get install vim wget curl gnupg gosu git -yq && \
+    apt-get install vim wget curl gnupg gosu git telnet -yq && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV LND_VERSION=v0.13.0-beta 

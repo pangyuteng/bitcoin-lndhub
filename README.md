@@ -1,8 +1,8 @@
-## bitcoin-lndhub
+## bitcoin-lndhub (pi3 + docker-compose)
 
-How to setup raspberrypi3 and docker-compose to setup bitcoin-core node and lightning (bluewallet LndHub).
+How to setup Bitcoin Lightning (bluewallet LndHub) with raspberrypi3 and docker-compose.
 
-motivation:  most people use getumbrel/umbrel to set up a lightning node with a raspberry pi4, but i really just want to stick with my pi3 and wanted to explorer bluewallets LndHub.
+motivation:  most people use `getumbrel/umbrel` to set up a lightning node with a raspberry pi4, but what if to stack sats so bad (** translation ** you are too cheap to buy a pi4 and a 1tb ssd) and you'd rather just stick with an used pi3? ** THIS REPO IS YOUR SOLUTION **.
 
 + spec: Raspberry3 (arm32v7, 1gb RAM), 32gb SD-card, 750GB HDD, raspbian OS.
 

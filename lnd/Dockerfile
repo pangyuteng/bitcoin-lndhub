@@ -17,3 +17,4 @@ RUN tar -xzf *.tar.gz -C /opt
 
 ENV PATH=/opt/lnd-${TARGETPLATFORM}-${LND_VERSION}:$PATH
 
+#ENTRYPOINT ["tail", "-f", "/dev/null"]

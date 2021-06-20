@@ -1,6 +1,6 @@
 let config = {
   bitcoind: {
-    rpc: 'http://user:password@bitcoind:8332',
+    rpc: 'http://username:password@bitcoind:8332',
   },
   redis: {
     port: 6379,
@@ -12,7 +12,7 @@ let config = {
     url: 'lnd:10009',
   },
 };
-
+// above can be {} since `config` is below overides it.
 if (process.env.CONFIG) {
   console.log('using config from env');
   config = JSON.parse(process.env.CONFIG);

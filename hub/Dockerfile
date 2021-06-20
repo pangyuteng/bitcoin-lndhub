@@ -27,3 +27,5 @@ RUN ln -s /opt/LndHub/node_modules/.bin/babel /usr/local/bin/babel
 
 RUN mkdir -p /opt/LndHub/build && \
     babel ./ --out-dir ./build --copy-files --ignore node_modules
+
+#ENTRYPOINT ["tail", "-f", "/dev/null"]

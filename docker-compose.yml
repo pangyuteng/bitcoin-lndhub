@@ -54,9 +54,9 @@ services:
         ports:
             - "3000:3000"
         volumes:
-            - /mnt/hdd/hub/config.js:/opt/LndHub/config.js
+            - /mnt/hdd/hub/config.js:/opt/LndHub/config.js:ro
             - /mnt/hdd/lnd:/lnd:ro
         environment:
-            CONFIG: '{ "rateLimit": 10000, "postRateLimit": 10000, "redis": { "port": 6379, "host": "redis", "family": 4, "password": "moneyprintergobrrr", "db": 0 }, "lnd": { "url": "lnd:10009", "password":""}}'
+            CONFIG: '{ "rateLimit": 10000, "postRateLimit": 10000, "redis": { "port": 6379, "host": "redis", "family": 4, "password": "moneyprintergobrrr", "db": 0 }, "lnd": { "url": "lnd:10009", "password":"moneyprintergobrrr"}}'
             TLSCERT: "/lnd/tls.cert"
             MACAROON: "/lnd/data/chain/bitcoin/mainnet/admin.macaroon"

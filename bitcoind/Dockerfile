@@ -23,3 +23,5 @@ RUN tar -xzf *.tar.gz -C /opt \
    && rm -rf /opt/bitcoin-${BITCOIN_VERSION}/bin/bitcoin-qt
 
 RUN bitcoind -version | grep "Bitcoin Core version v${BITCOIN_VERSION}"
+
+#ENTRYPOINT ["tail", "-f", "/dev/null"]

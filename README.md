@@ -2,7 +2,7 @@
 
 How to setup Bitcoin Lightning (bluewallet LndHub) with raspberrypi3 and docker-compose.
 
-motivation:  most people use `getumbrel/umbrel` to set up a lightning node with a raspberry pi4, but what if to stack sats so bad (** translation ** you are too cheap to buy a pi4 and a 1tb ssd) and you'd rather just stick with an used pi3? ** THIS REPO IS YOUR SOLUTION **.
+motivation:  most people use `getumbrel/umbrel` to set up a lightning node with a raspberry pi4, but what if you want to stack Sats so bad and you'd rather just stick with an used pi3? ** translation ** you are too cheap to buy a pi4 and a 1tb ssd, and you'd rather waste a whole afternoon creating your own docker solution, and when i say you, i really meant to say I.
 
 + spec: Raspberry3 (arm32v7, 1gb RAM), 32gb SD-card, 750GB HDD, raspbian OS.
 

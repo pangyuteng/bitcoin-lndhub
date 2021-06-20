@@ -44,4 +44,6 @@ http://help.bluewallet.io/en/articles/2849035-lndhub-on-your-own-vps-with-ubuntu
 http://help.bluewallet.io/en/articles/2849000-lndhub-with-raspibolt
 https://github.com/getumbrel/umbrel/blob/master/apps/bluewallet/docker-compose.yml
 https://github.com/ruimarinho/docker-bitcoin-core/blob/master/0.21/Dockerfile
-
+https://stadicus.github.io/RaspiBolt/raspibolt_72_zap-ios.html
+https://www.expressvpn.com/internet-privacy/how-to-set-up-a-home-server-and-use-it-as-a-bitcoin-node
+https://stadicus.github.io/RaspiBolt/raspibolt_70_troubleshooting.html

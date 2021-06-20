@@ -11,9 +11,8 @@ ENV TARGETPLATFORM=linux-armv7
 WORKDIR /opt
 RUN wget https://github.com/lightningnetwork/lnd/releases/download/${LND_VERSION}/lnd-${TARGETPLATFORM}-${LND_VERSION}.tar.gz
 
-#curl https://keybase.io/bitconner/pgp_keys.asc | gpg --import
+# TODO: missing checksum
 
-# unzip 
 RUN tar -xzf *.tar.gz -C /opt
 
 ENV PATH=/opt/lnd-${TARGETPLATFORM}-${LND_VERSION}:$PATH

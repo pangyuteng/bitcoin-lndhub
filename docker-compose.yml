@@ -7,19 +7,19 @@ services:
         volumes:
             - /mnt/hdd/redis:/data
         entrypoint: redis-server --appendonly yes
-        #restart: always
+        restart: always
     bitcoind:
         image: bitcoind
         build:
             context: bitcoind
             dockerfile: Dockerfile
-        entrypoint: bitcoind
+        command: bitcoind
+        restart: always
         ports:
             - "8332:8332"
             - "8333:8333"
-            - "18332:18332"
-            - "18333:18333"
-            - "18444:18444"
+            - "28332:28332"
+            - "28333:28333"
         volumes:
             - /mnt/hdd/bitcoin:/root/.bitcoin
     lnd:
@@ -29,8 +29,26 @@ services:
             dockerfile: Dockerfile
         depends_on:
             - bitcoind
-        entrypoint: lnd
+        command: lnd
+        restart: always
         ports:
-            - "8080:8080"
+            - "10009:10009"
         volumes:
             - /mnt/hdd/lnd:/root/.lnd
+    hub:
+        image: hub
+        build:
+            context: hub
+            dockerfile: Dockerfile
+        depends_on:
+            - bitcoind
+            - lnd
+            - redis
+        command: node build/index.js
+        restart: always
+        ports:
+            - "3000:3000"
+        volumes:
+            - /mnt/hdd/hub/config.js:/opt/LndHub/config.js
+            - /mnt/hdd/lnd/data/chain/bitcoin/mainnet/admin.macaroon:/opt/LndHub/admin.macaroon
+            - /mnt/hdd/lnd/tls.cert:/opt/LndHub/tls.cert

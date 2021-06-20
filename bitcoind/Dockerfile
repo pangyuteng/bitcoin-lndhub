@@ -1,14 +1,10 @@
-# ref. https://github.com/ruimarinho/docker-bitcoin-core/blob/master/0.21/Dockerfile
-
 FROM ubuntu:18.04
 
 RUN apt-get update && \
     apt-get upgrade -yq && \
-    apt-get install vim wget curl gnupg gosu -yq && \
+    apt-get install vim wget curl gnupg gosu git -yq && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#ENV TARGETPLATFORM=x86_64-linux-gnu
-#ENV TARGETPLATFORM=aarch64-linux-gnu
 ENV TARGETPLATFORM=arm-linux-gnueabihf
 ENV BITCOIN_VERSION=0.21.1
 ENV PATH=/opt/bitcoin-${BITCOIN_VERSION}/bin:$PATH
@@ -28,10 +24,3 @@ RUN tar -xzf *.tar.gz -C /opt \
    && rm -rf /opt/bitcoin-${BITCOIN_VERSION}/bin/bitcoin-qt
 
 RUN bitcoind -version | grep "Bitcoin Core version v${BITCOIN_VERSION}"
-
-COPY entrypoint.sh .
-RUN chmod +x /opt/entrypoint.sh
-
-#ENTRYPOINT ["tail"]
-#CMD ["-f","/dev/null"]
-#ENTRYPOINT bitcoind

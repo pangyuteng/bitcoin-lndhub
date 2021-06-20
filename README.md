@@ -1,15 +1,14 @@
-## LndHub with Docker! (via pi3 + docker-compose)
+## run a Lightning Node with Pi 3 and Docker
 
-How to setup BlueWallet's Lightning Hub with a "Raspberry Pi 3 Model B" and docker-compose.
+How to setup BlueWallet's Lightning Hub with a Raspberry Pi 3 and Docker.
 
-Motivation: tl.dr. I am attemping to build a Lightning Hub solution for Pi 3 (linux/arm/v7).
-long story: Most people use `getumbrel/umbrel` to set up a lightning node with a raspberry pi4, but what if you want to stack Sats so bad and you'd rather just stick with an used pi3? ** translation ** you are too cheap to buy a pi4 and a 1tb ssd, and you'd rather waste a whole afternoon recreating pretty much the same docker solution as umbrel, and when i say you, i really meant to say I. 
+This repo documents my journey of setting up BlueWallet's Lightning Hub using a Pi3 (linux/arm/v7) and Docker.  Most people use Pi4 (arm64) and have no issues with just using the OS provided by Umbrel, however I had a Pi3 lying around running bitcoind, so I thought why not put it into a even better use - full bitcoin node + lightning node and link it up to a bluewallet?
 
-+ spec: Raspberry3 (arm32v7, 1gb RAM), 32gb SD-card, 750GB HDD, raspbian OS.
+my hardware spec: Raspberry Pi 3 Model B (arm32v7, 1gb RAM), 32gb SD-card, 750GB HDD, raspbian OS.
 
 ### instructions
 
-+ acquire a Raspberry Pi3, 32GB sd card, 750+GB HDD/SSD.
++ find a Raspberry Pi3, 32GB sd card, 750+GB HDD/SSD
 
 + install Raspbian OS
 
@@ -35,9 +34,6 @@ cp lnd/config.js $MYROOT/hub/config.js
 + run below
 
 ```
-docker-compose up
-ctrl-c
-sudo chmod 777 /mnt/hdd/lnd/data/chain/bitcoin/mainnet/admin.macaroon
 docker-compose up -d
 ```
 

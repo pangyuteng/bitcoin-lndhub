@@ -6,7 +6,7 @@ services:
             - "6379:6379"
         volumes:
             - /mnt/hdd/redis:/data
-        entrypoint: redis-server --appendonly yes
+        entrypoint: redis-server --appendonly yes --requirepass moneyprintergobrrr
         restart: always
     bitcoind:
         image: bitcoind
@@ -33,6 +33,7 @@ services:
         restart: always
         ports:
             - "10009:10009"
+            - "8080:8080"
         volumes:
             - /mnt/hdd/lnd:/root/.lnd
     hub:
@@ -44,11 +45,18 @@ services:
             - bitcoind
             - lnd
             - redis
+        links:
+            - bitcoind
+            - lnd
+            - redis
         command: node build/index.js
         restart: always
         ports:
             - "3000:3000"
         volumes:
             - /mnt/hdd/hub/config.js:/opt/LndHub/config.js
-            - /mnt/hdd/lnd/data/chain/bitcoin/mainnet/admin.macaroon:/opt/LndHub/admin.macaroon
-            - /mnt/hdd/lnd/tls.cert:/opt/LndHub/tls.cert
+            - /mnt/hdd/lnd:/lnd:ro
+        environment:
+            CONFIG: '{ "rateLimit": 10000, "postRateLimit": 10000, "redis": { "port": 6379, "host": "redis", "family": 4, "password": "moneyprintergobrrr", "db": 0 }, "lnd": { "url": "lnd:10009", "password":""}}'
+            TLSCERT: "/lnd/tls.cert"
+            MACAROON: "/lnd/data/chain/bitcoin/mainnet/admin.macaroon"

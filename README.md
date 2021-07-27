@@ -31,6 +31,20 @@ cp lnd/config.js $MYROOT/hub/config.js
     +  modify config, i.e. `username` and `password` in `bitcoin.conf`. 
 
 
++ initial setup
+
+```
+docker-compose up -d bitcoind
+# disable `wallet-unlock-password-file` in `lnd.conf`
+docker-compose up -d lnd
+docker exec -it btc_lnd_1 bash
+lncli create
+exit
+# enable `wallet-unlock-password-file` in `lnd.conf`
+docker-compose restart lnd
+docker-compose up -d hub
+```
+
 + run below
 
 ```
@@ -48,9 +62,17 @@ https://stadicus.github.io/RaspiBolt/raspibolt_72_zap-ios.html
 https://www.expressvpn.com/internet-privacy/how-to-set-up-a-home-server-and-use-it-as-a-bitcoin-node
 https://stadicus.github.io/RaspiBolt/raspibolt_70_troubleshooting.html
 https://github.com/lightningnetwork/lnd/issues/4422
+https://bitcoin.stackexchange.com/questions/91802/are-official-bitcoin-core-released-compiled-with-zmq-in-general
 
+### misc
 
++ testing zeromq port access...
 ```
 telnet localhost 28332
-curl --user username:password -H 'content-type:text/plain;' http://localhost:28332 --data-binary '{"jsonrpc":"1.0","id":"1","method":"getmininginfo"}'
+curl --user username:password -H 'content-type:text/plain;' http://localhost:28332 --data-binary '{"jsonrpc":"1.0","id":"1","method":"getmininginfo"}' --output out.binary
+
+export LND_DIR=/mnt/hdd/lnd
+export MACAROON_HEADER="Grpc-Metadata-macaroon: $(sudo xxd -ps -u -c 1000 $LND_DIR/data/chain/bitcoin/mainnet/admin.macaroon)"
+curl -X GET --cacert $LND_DIR/tls.cert --header "$MACAROON_HEADER" https://localhost:8080/v1/balance/blockchain
+
 ```

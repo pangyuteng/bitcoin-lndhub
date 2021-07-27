@@ -16,7 +16,7 @@ RUN wget https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-${TARGETPL
 RUN ln -s /usr/local/lib/nodejs/node-${NODE_VERSION}/node-${NODE_VERSION}-${TARGETPLATFORM}/bin/node /usr/local/bin/node && \
     ln -s /usr/local/lib/nodejs/node-${NODE_VERSION}/node-${NODE_VERSION}-${TARGETPLATFORM}/bin/npm /usr/local/bin/npm
 
-ENV LNDHUB_VERSION=v1.3.4
+ENV LNDHUB_VERSION=v1.3.5
 RUN git clone https://github.com/BlueWallet/LndHub
 WORKDIR /opt/LndHub
 RUN git checkout ${LNDHUB_VERSION}

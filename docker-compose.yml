@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 services:
     redis:
         image: "redis:latest"
@@ -8,7 +8,7 @@ services:
             - /mnt/hdd/redis:/data
         entrypoint: redis-server --appendonly yes --requirepass moneyprintergobrrr
         restart: always
-    bitcoind:
+    core:
         image: bitcoind
         build:
             context: bitcoind

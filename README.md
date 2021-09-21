@@ -14,6 +14,14 @@ my hardware spec: Raspberry Pi 3 Model B (arm32v7, 1gb RAM), 32gb SD-card, 750GB
 
 + install Docker and docker-compose
 
++ install Tor
+
+```
+https://opensource.com/article/20/4/tor-proxy-raspberry-pi
+https://blog.lopp.net/tor-only-bitcoin-lightning-guide
+
+```
+
 + make folders for storage, create config files using sample configs
 
 ```
@@ -28,8 +36,9 @@ cp lnd/lnd.conf $MYROOT/lnd/lnd.conf
 cp lnd/config.js $MYROOT/hub/config.js
 
 ```
-    +  modify config, i.e. `username` and `password` in `bitcoin.conf`. 
+    + modify config, i.e. `username` and `password` in `bitcoin.conf`. 
 
+    + accordingly modify config based on  `https://blog.lopp.net/tor-only-bitcoin-lightning-guide` so you can use Tor.
 
 + initial setup
 

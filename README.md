@@ -36,7 +36,7 @@ cp lnd/lnd.conf $MYROOT/lnd/lnd.conf
 cp lnd/config.js $MYROOT/hub/config.js
 
 ```
-    + modify config, i.e. `username` and `password` in `bitcoin.conf`. 
+    + modify config, i.e. `[redacted]` in `bitcoin.conf` and `lnd.conf`.
 
     + accordingly modify config based on  `https://blog.lopp.net/tor-only-bitcoin-lightning-guide` so you can use Tor.
 
@@ -63,15 +63,25 @@ docker-compose up -d
 
 
 ### reference
+```
 http://help.bluewallet.io/en/articles/2849035-lndhub-on-your-own-vps-with-ubuntu
+
 http://help.bluewallet.io/en/articles/2849000-lndhub-with-raspibolt
+
 https://github.com/getumbrel/umbrel/blob/master/apps/bluewallet/docker-compose.yml
+
 https://github.com/ruimarinho/docker-bitcoin-core/blob/master/0.21/Dockerfile
+
 https://stadicus.github.io/RaspiBolt/raspibolt_72_zap-ios.html
+
 https://www.expressvpn.com/internet-privacy/how-to-set-up-a-home-server-and-use-it-as-a-bitcoin-node
+
 https://stadicus.github.io/RaspiBolt/raspibolt_70_troubleshooting.html
+
 https://github.com/lightningnetwork/lnd/issues/4422
+
 https://bitcoin.stackexchange.com/questions/91802/are-official-bitcoin-core-released-compiled-with-zmq-in-general
+```
 
 ### misc
 

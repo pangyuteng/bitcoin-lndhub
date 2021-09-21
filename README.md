@@ -34,9 +34,9 @@ mkdir -p $MYROOT/hub
 cp bitcoind/bitcoin.conf $MYROOT/bitcoind/bitcoin.conf
 cp lnd/lnd.conf $MYROOT/lnd/lnd.conf
 cp lnd/config.js $MYROOT/hub/config.js
-
+cp SAMPLE.env .env
 ```
-    + modify config, i.e. `[redacted]` in `bitcoin.conf` and `lnd.conf`.
+    + modify config, i.e. `[redacted]` in `bitcoin.conf`, `lnd.conf` and `.env`.
 
     + accordingly modify config based on  `https://blog.lopp.net/tor-only-bitcoin-lightning-guide` so you can use Tor.
 

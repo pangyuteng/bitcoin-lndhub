@@ -18,6 +18,10 @@ my hardware spec: Raspberry Pi 3 Model B (arm32v7, 1gb RAM), 32gb SD-card, 750GB
 
 ```
 https://opensource.com/article/20/4/tor-proxy-raspberry-pi
+
+# using below update config `sudo vim /etc/tor/torrc`
+https://wiki.ion.radar.tech/tutorials/nodes/tor
+
 https://blog.lopp.net/tor-only-bitcoin-lightning-guide
 
 ```
@@ -88,10 +92,22 @@ https://bitcoin.stackexchange.com/questions/91802/are-official-bitcoin-core-rele
 + testing zeromq port access...
 ```
 telnet localhost 28332
-curl --user username:password -H 'content-type:text/plain;' http://localhost:28332 --data-binary '{"jsonrpc":"1.0","id":"1","method":"getmininginfo"}' --output out.binary
+export rpcuser=
+export rpcpass=
+curl --user ${rpcuser}:${rpcpass} -H 'content-type:text/plain;' --data-binary '{"jsonrpc":"1.0","id":"1","method":"getmininginfo"}' http://localhost:8332
+
+{"result":{"blocks":699454,"difficulty":17615033039278.88,"networkhashps":1.547233619238887e+20,"pooledtx":0,"chain":"main","warnings":""},"error":nul
+l,"id":"1"}
+
+--
 
 export LND_DIR=/mnt/hdd/lnd
 export MACAROON_HEADER="Grpc-Metadata-macaroon: $(sudo xxd -ps -u -c 1000 $LND_DIR/data/chain/bitcoin/mainnet/admin.macaroon)"
 curl -X GET --cacert $LND_DIR/tls.cert --header "$MACAROON_HEADER" https://localhost:8080/v1/balance/blockchain
+
+
+{"error":"the RPC server is in the process of starting up, but not yet ready to accept calls","code":2,"message":"the RPC server is in the process of starting up, but not yet ready to accept calls","details":[]}
+
+
 
 ```

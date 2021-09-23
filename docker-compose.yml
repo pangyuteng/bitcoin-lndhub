@@ -39,6 +39,7 @@ services:
         #    - "8080:8080"
         volumes:
             - /mnt/hdd/lnd:/root/.lnd
+            - /run/tor/control.authcookie
     hub:
         image: hub
         build:

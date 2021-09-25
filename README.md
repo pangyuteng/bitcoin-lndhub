@@ -1,3 +1,10 @@
+## disclaimer
+
++ lndhub is not working at the moment. I've posted a question below... will post solution if I find it.  Probably the easiest "solution" is to just use a Pi4 and use umbrel. ;)  
+```
+https://bitcoin.stackexchange.com/questions/107147/lnd-and-bluewallet-lndhub-integration-error
+```
+
 ## run a Lightning Node with Pi 3 and Docker
 
 How to setup BlueWallet's Lightning Hub with a Raspberry Pi 3 and Docker.

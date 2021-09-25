@@ -8,11 +8,31 @@ my hardware spec: Raspberry Pi 3 Model B (arm32v7, 1gb RAM), 32gb SD-card, 750GB
 
 ### instructions
 
-+ find a Raspberry Pi3, 32GB sd card, 750+GB HDD/SSD
++ find a Raspberry Pi3, 64GB sd card, 750+GB HDD/SSD
 
-+ install Raspbian OS
++ install Raspbian OS or Ubuntu Core
 
-+ install Docker and docker-compose
+	+ I installed Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-1043-raspi armv7l)
+
++ install basic tools (some may already been installed...)
+
+```
+sudo apt-get update
+sudo apt-get install network-manager curl wget vim git -yq
+```
+
++ enable swap
+
+```
+https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04
+```
+
++ install Docker and docker-compose (better way is via docker official site)
+
+```
+sudo apt install -y docker.io docker-compose
+```
+
 
 + install Tor
 

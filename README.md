@@ -99,14 +99,36 @@ curl --user ${rpcuser}:${rpcpass} -H 'content-type:text/plain;' --data-binary '{
 {"result":{"blocks":699454,"difficulty":17615033039278.88,"networkhashps":1.547233619238887e+20,"pooledtx":0,"chain":"main","warnings":""},"error":nul
 l,"id":"1"}
 
+
+## above indicates bitoin-core is running
 --
 
 export LND_DIR=/mnt/hdd/lnd
 export MACAROON_HEADER="Grpc-Metadata-macaroon: $(sudo xxd -ps -u -c 1000 $LND_DIR/data/chain/bitcoin/mainnet/admin.macaroon)"
 curl -X GET --cacert $LND_DIR/tls.cert --header "$MACAROON_HEADER" https://localhost:8080/v1/balance/blockchain
 
+# initial responses:
 
 {"error":"the RPC server is in the process of starting up, but not yet ready to accept calls","code":2,"message":"the RPC server is in the process of starting up, but not yet ready to accept calls","details":[]}
+
+# once blockchain is almost synced, response will turn into below:
+
+{"total_balance":"0","confirmed_balance":"0","unconfirmed_balance":"0","account_balance":{"default":{"confirmed_balance":"0","unconfirmed_balance":"0"}}}
+
+
+## above indicates lightning is running
+--
+
+
+docker exec -it btc_hub_1 bash
+node build/index.js
+
+^^ above errored out
+
+`docker logs  btc_lnd_1 -f` showed below
+
+2021-09-25 05:58:16.066 [ERR] RPCS: [/lnrpc.Lightning/GetInfo]: encoding/hex: invalid byte: U+002F '/'
+
 
 
 

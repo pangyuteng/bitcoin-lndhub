@@ -24,6 +24,7 @@ services:
         #    - "28333:28333"
         volumes:
             - /mnt/hdd/bitcoin:/root/.bitcoin
+            - /run/tor:/run/tor
     lnd:
         image: lnd
         build:

@@ -57,8 +57,7 @@ services:
         #ports:
         #    - "3000:3000"
         volumes:
-            - /mnt/hdd/lnd:/lnd:ro
-            - /lnd/tls.cert:/opt/LndHub/tls.cert:ro
-            - /lnd/data/chain/bitcoin/mainnet/admin.macaroon:/opt/LndHub/admin.macaroon
+            - /mnt/hdd/lnd/tls.cert:/opt/LndHub/tls.cert:ro
+            - /mnt/hdd/lnd/data/chain/bitcoin/mainnet/admin.macaroon:/opt/LndHub/admin.macaroon:ro
         environment:
             CONFIG: ${HUBCONFIG}

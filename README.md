@@ -1,17 +1,10 @@
-## disclaimer
-
-+ lndhub is not working at the moment. I've posted a question below... will post solution if I find it.  Probably the easiest "solution" is to just use a Pi4 and use umbrel. ;)  
-```
-https://bitcoin.stackexchange.com/questions/107147/lnd-and-bluewallet-lndhub-integration-error
-```
-
 ## run a Lightning Node with Pi 3 and Docker
 
 How to setup BlueWallet's Lightning Hub with a Raspberry Pi 3 and Docker.
 
 This repo documents my journey of setting up BlueWallet's Lightning Hub using a Pi3 (linux/arm/v7) and Docker.  Most people use Pi4 (arm64) and have no issues with just using the OS provided by Umbrel, however I had a Pi3 lying around running bitcoind, so I thought why not put it into a even better use - full bitcoin node + lightning node and link it up to a bluewallet?
 
-my hardware spec: Raspberry Pi 3 Model B (arm32v7, 1gb RAM), 32gb SD-card, 750GB HDD, raspbian OS.
+my hardware spec: Raspberry Pi 3 Model B (arm32v7, 1gb RAM), 32gb SD-card, 750GB HDD.
 
 ### instructions
 
@@ -28,7 +21,7 @@ sudo apt-get update
 sudo apt-get install network-manager curl wget vim git -yq
 ```
 
-+ enable swap
++ enable swap, i added a 4GB swap file, not sure what the optimal size is **** super important to add swap! ****
 
 ```
 https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04
@@ -71,16 +64,16 @@ cp SAMPLE.env .env
 
     + accordingly modify config based on  `https://blog.lopp.net/tor-only-bitcoin-lightning-guide` so you can use Tor.
 
-+ initial setup
++ initial setup (kinda twisted here, because you have to create a lnd wallet first)
 
 ```
 docker-compose up -d bitcoind
-# disable `wallet-unlock-password-file` in `lnd.conf`
+# disable `wallet-unlock-password-file` in `lnd.conf`, i.e. adding char `#` infront of password line
 docker-compose up -d lnd
 docker exec -it btc_lnd_1 bash
 lncli create
 exit
-# enable `wallet-unlock-password-file` in `lnd.conf`
+# enable `wallet-unlock-password-file` in `lnd.conf`, i.e. removing char `#` infront of password line
 docker-compose restart lnd
 docker-compose up -d hub
 ```
@@ -91,12 +84,25 @@ docker-compose up -d hub
 docker-compose up -d
 ```
 
+
++ `lnd` is going to be erroring out, until `core` syncs up.
++ `lnd`/zeromq  may also have issue allocating memory.
++ cross your finger, or figure out a way to reduce memory, so lnd can run.
++ then `hub` will be able to connect to `lnd`.
+
+
 + to stop the service run below first, and wait until core logs: `Shutdown: done`
 
 ```
 docker exec -it btc_core_1 bash
 bitcoin-cli stop
+
+
+docker-compose down
+
 ```
+
+
 
 
 ### reference

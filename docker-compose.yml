@@ -30,8 +30,8 @@ services:
         build:
             context: lnd
             dockerfile: Dockerfile
-        depends_on:
-            - core
+        #depends_on:
+        #    - core
         command: lnd
         restart: always
         network_mode: "host"
@@ -46,10 +46,10 @@ services:
         build:
             context: hub
             dockerfile: Dockerfile
-        depends_on:
-            - core
-            - lnd
-            - redis
+        #depends_on:
+        #    - core
+        #    - lnd
+        #    - redis
         command: node build/index.js
         #command: tail -f /dev/null
         restart: always

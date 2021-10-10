@@ -81,14 +81,21 @@ docker-compose up -d hub
 + run below
 
 ```
-docker-compose up -d
+docker-compose up -d core redis lnd
 ```
 
 
 + `lnd` is going to be erroring out, until `core` syncs up.
 + `lnd`/zeromq  may also have issue allocating memory.
 + cross your finger, or figure out a way to reduce memory, so lnd can run.
+
+```
+docker-compose up -d hub
+```
+
 + then `hub` will be able to connect to `lnd`.
+
+
 
 
 + to stop the service run below first, and wait until core logs: `Shutdown: done`

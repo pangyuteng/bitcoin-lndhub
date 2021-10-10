@@ -30,8 +30,8 @@ services:
         build:
             context: lnd
             dockerfile: Dockerfile
-        #depends_on:
-        #    - bitcoind
+        depends_on:
+            - core
         command: lnd
         restart: always
         network_mode: "host"
@@ -46,19 +46,19 @@ services:
         build:
             context: hub
             dockerfile: Dockerfile
-        #depends_on:
-        #    - bitcoind
-        #    - lnd
-        #    - redis
-        #command: node build/index.js
-        command: tail -f /dev/null
+        depends_on:
+            - core
+            - lnd
+            - redis
+        command: node build/index.js
+        #command: tail -f /dev/null
         restart: always
         network_mode: "host"
         #ports:
         #    - "3000:3000"
         volumes:
             - /mnt/hdd/lnd:/lnd:ro
+            - /lnd/tls.cert:/opt/LndHub/tls.cert:ro
+            - /lnd/data/chain/bitcoin/mainnet/admin.macaroon:/opt/LndHub/admin.macaroon
         environment:
             CONFIG: ${HUBCONFIG}
-            TLSCERT: "/lnd/tls.cert"
-            MACAROON: "/lnd/data/chain/bitcoin/mainnet/admin.macaroon"

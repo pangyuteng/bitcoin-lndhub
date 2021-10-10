@@ -91,6 +91,12 @@ docker-compose up -d hub
 docker-compose up -d
 ```
 
++ to stop the service run below first, and wait until core logs: `Shutdown: done`
+
+```
+docker exec -it btc_core_1 bash
+bitcoin-cli stop
+```
 
 
 ### reference

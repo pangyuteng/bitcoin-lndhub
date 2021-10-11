@@ -1,3 +1,7 @@
+
+*** ultimately you will still need to run in to memory issues with raspberry pi 3 ***
+*** memory issue: https://github.com/lightningnetwork/lnd/issues/4811 ***
+
 ## run a Lightning Node with Pi 3 and Docker
 
 How to setup BlueWallet's Lightning Hub with a Raspberry Pi 3 and Docker.
@@ -111,6 +115,7 @@ docker-compose down
 
 + note... ran in to memory allocation error, had to clear /mnt/lnd folder down to lnd.conf and pwd file.
 and restart lnd.
+
 
 
 ### reference

@@ -1,6 +1,9 @@
 
-*** ultimately you will still run into memory issues with raspberry pi 3 ***
-*** memory issue: https://github.com/lightningnetwork/lnd/issues/4811 ***
+### *** ultimately you will still run into memory issues with raspberry pi 3 (see link/issue below) ***
+
+
+*** https://github.com/lightningnetwork/lnd/issues/4811 ***
+
 
 ## run a Lightning Node with Pi 3 and Docker
 
@@ -29,6 +32,7 @@ sudo apt-get install network-manager curl wget vim git -yq
 
 ```
 https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04
+https://askubuntu.com/questions/33697/how-do-i-add-swap-after-system-installation
 ```
 
 + install Docker and docker-compose (better way is via docker official site)

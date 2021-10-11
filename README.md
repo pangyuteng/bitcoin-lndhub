@@ -1,5 +1,5 @@
 
-*** ultimately you will still need to run in to memory issues with raspberry pi 3 ***
+*** ultimately you will still run into memory issues with raspberry pi 3 ***
 *** memory issue: https://github.com/lightningnetwork/lnd/issues/4811 ***
 
 ## run a Lightning Node with Pi 3 and Docker
@@ -100,7 +100,13 @@ docker-compose up -d hub
 + then `hub` will be able to connect to `lnd`.
 
 
++ enable port 3000
+```
+sudo ufw allow 3000 comment 'allow LndHub'
+sudo ufw reload
+```
 
++ all done now, check $IP:3000 in browser ! 
 
 + to stop the service run below first, and wait until core logs: `Shutdown: done`
 

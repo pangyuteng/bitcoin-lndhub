@@ -109,7 +109,8 @@ docker-compose down
 
 ```
 
-
++ note... ran in to memory allocation error, had to clear /mnt/lnd folder down to lnd.conf and pwd file.
+and restart lnd.
 
 
 ### reference

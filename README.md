@@ -136,6 +136,7 @@ and restart lnd.
 download lndconnect
 read below
 https://stopanddecrypt.medium.com/running-bitcoin-lightning-nodes-over-the-tor-network-2021-edition-489180297d5
+https://github.com/lightningnetwork/lnd/blob/master/docs/configuring_tor.md
 
 
 docker exec -it btc_lnd_1 bash

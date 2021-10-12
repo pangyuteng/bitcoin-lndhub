@@ -117,16 +117,67 @@ sudo ufw reload
 ```
 docker exec -it btc_core_1 bash
 bitcoin-cli stop
-
-
+```
+```
+docker exec -it btc_lnd_1 bash
+lncli stop
+```
+```
 docker-compose down
-
 ```
 
 + note... ran in to memory allocation error, had to clear /mnt/lnd folder down to lnd.conf and pwd file.
 and restart lnd.
 
 
++ how to add channel?
+
+```
+download lndconnect
+read below
+https://stopanddecrypt.medium.com/running-bitcoin-lightning-nodes-over-the-tor-network-2021-edition-489180297d5
+
+
+docker exec -it btc_lnd_1 bash
+lncli newaddress np2wkh
+
+```
+
+    + sent 1usd to above from muun lnd wallet.
+```
+    lncli walletbalance
+```
+
+    + "expose" port 8080 via tor. added below to tor config and restart tor
+```
+sudo vim /etc/tor/torrc
+```
+
+```
+CookieAuthFileGroupReadable 1
+HiddenServiceDir /var/lib/tor/lnd/
+HiddenServicePort 8080 127.0.0.1:8080
+```
+```
+sudo systemctl restart tor
+```
+
+```
+? restart docker services?
+```
+    + ?create qr code for lnd node
+
+```
+
+cd lndconnect-linux-armv7-v0.2.0
+export ONIONIP=$(sudo cat /var/lib/tor/lnd/hostname)
+sudo ./lndconnect --lnddir=/mnt/hdd/lnd --host=$ONIONIP --port=8080 --image
+
+scp lndconnect-qr.png .
+
+
+
+````
 
 ### reference
 ```

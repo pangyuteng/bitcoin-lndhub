@@ -13,7 +13,7 @@ This repo documents my journey of setting up BlueWallet's Lightning Hub using a 
 
 my hardware spec: Raspberry Pi 3 Model B (arm32v7, 1gb RAM), 32gb SD-card, 750GB HDD.
 
-### instructions
+## setup bitcoin-core,lnd,lndhub
 
 + find a Raspberry Pi3, 64GB sd card, 750+GB HDD/SSD
 
@@ -130,7 +130,7 @@ docker-compose down
 and restart lnd.
 
 
-+ how to create wallet/add channel
+## create lnd wallet and add channel
 
 ```
 download lndconnect
@@ -142,19 +142,19 @@ https://github.com/lightningnetwork/lnd/blob/master/docs/configuring_tor.md
 
 ```
 
-    + create wallet, save address
++ create wallet, save address
 ```
 docker exec -it btc_lnd_1 bash
 lncli newaddress np2wkh
 
 ```
 
-    + sent 1usd to above address from muun lnd wallet, check balance to confirm receipt:
++ sent 1usd to above address from muun lnd wallet, check balance to confirm receipt:
 ```
     lncli walletbalance
 ```
 
-    + "expose" port 10009 via tor. added below to tor config and restart tor
++ "expose" port 10009 via tor. added below to tor config and restart tor
 ```
 sudo vim /etc/tor/torrc
 ```
@@ -167,9 +167,9 @@ HiddenServicePort 10009 127.0.0.1:10009
 ```
 sudo systemctl restart tor
 ```
-    + gracefully shutdown and up `lnd`.
++ gracefully shutdown and up `lnd`.
 
-    + create qr code for lnd wallet, to monitor via Zap.
++ create qr code for lnd wallet, to monitor via Zap.
 
 ```
 
@@ -181,12 +181,29 @@ scp lndconnect-qr.png .
 
 
 ````
-    + setup wallet with qr code in Zap...
+
++ use lnd wallet in Zap via qr code generated above.
 ```
 https://stadicus.github.io/RaspiBolt/raspibolt_72_zap-ios.html
 https://github.com/LN-Zap/zap-android/issues/185
 ```
 
++ move more sats to 40k+ sat?
+
++ create channel by first finding one on 1ml.com, then with `lncli connect` and `lncli openchannel` (run commands inside the running lnd container, you can probably also add via Zap app)
+
+```
+https://stopanddecrypt.medium.com/running-bitcoin-lightning-nodes-over-the-tor-network-2021-edition-489180297d5
+
+sample commands:
+
+lncli connect 03864ef025fde8fb587d989186ce6a4a186895ee44a926bfc370e2c366597a3f8f@of7husrflx7sforh3fw6yqlpwstee3wg5imvvmkp4bz6rbjxtg5nljad.onion:9735
+
+lncli openchannel --node_key=03864ef025fde8fb587d989186ce6a4a186895ee44a926bfc370e2c366597a3f8f --local_amt=10000
+
+
+
+```
 
 
 

@@ -130,26 +130,31 @@ docker-compose down
 and restart lnd.
 
 
-+ how to add channel?
++ how to create wallet/add channel
 
 ```
 download lndconnect
+https://github.com/LN-Zap/lndconnect/releases
+
 read below
 https://stopanddecrypt.medium.com/running-bitcoin-lightning-nodes-over-the-tor-network-2021-edition-489180297d5
 https://github.com/lightningnetwork/lnd/blob/master/docs/configuring_tor.md
 
+```
 
+    + create wallet, save address
+```
 docker exec -it btc_lnd_1 bash
 lncli newaddress np2wkh
 
 ```
 
-    + sent 1usd to above from muun lnd wallet.
+    + sent 1usd to above address from muun lnd wallet, check balance to confirm receipt:
 ```
     lncli walletbalance
 ```
 
-    + "expose" port 8080 via tor. added below to tor config and restart tor
+    + "expose" port 10009 via tor. added below to tor config and restart tor
 ```
 sudo vim /etc/tor/torrc
 ```
@@ -157,28 +162,35 @@ sudo vim /etc/tor/torrc
 ```
 CookieAuthFileGroupReadable 1
 HiddenServiceDir /var/lib/tor/lnd/
-HiddenServicePort 8080 127.0.0.1:8080
+HiddenServicePort 10009 127.0.0.1:10009
 ```
 ```
 sudo systemctl restart tor
 ```
+    + gracefully shutdown and up `lnd`.
 
-```
-? restart docker services?
-```
-    + ?create qr code for lnd node
+    + create qr code for lnd wallet, to monitor via Zap.
 
 ```
 
 cd lndconnect-linux-armv7-v0.2.0
 export ONIONIP=$(sudo cat /var/lib/tor/lnd/hostname)
-sudo ./lndconnect --lnddir=/mnt/hdd/lnd --host=$ONIONIP --port=8080 --image
+sudo ./lndconnect --lnddir=/mnt/hdd/lnd --host=$ONIONIP --port=10009 --image
 
 scp lndconnect-qr.png .
 
 
-
 ````
+    + setup wallet with qr code in Zap...
+```
+https://stadicus.github.io/RaspiBolt/raspibolt_72_zap-ios.html
+https://github.com/LN-Zap/zap-android/issues/185
+```
+
+
+
+
+
 
 ### reference
 ```

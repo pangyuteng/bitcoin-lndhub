@@ -1,8 +1,16 @@
 
-### *** ultimately you will still run into memory issues with raspberry pi 3 (see link/issue below) ***
 
+#### UPDATE 2021-10-19
 
-*** https://github.com/lightningnetwork/lnd/issues/4811 ***
++ docker service is up for 7 days, RAM used 626MB of 856MB, swap used 416MB of 4GB, cpu capacity varies around 3-20%, temp is around 45C.
+
+#### UPDATE 2021-10-12
+
++ *** ultimately you will still run into memory issues with raspberry pi 3 (see link/issue below) ***
+```
+  https://github.com/lightningnetwork/lnd/issues/4811
+```
+
 
 
 ## run a Lightning Node with Pi 3 and Docker

@@ -1,11 +1,22 @@
 
 #### UPDATE 2021-11-25
 
+# *** DO NOT ATTEMPT RUNNING Lightning on 32-bit OS! Below is my attempt, you will likely loose your funds once channel.db exceeds 1GB! ***
+
 + channel.db size exceeded 2GB, which 32-bit compiled code will not be able to handle!
 ```
+https://github.com/lightningnetwork/lnd/issues/5877
 https://github.com/lightningnetwork/lnd/issues/5945
 ```
 
++ move `channel.db` from 32bit pc to 64bit pc, used chaintool to compact `channel.db`
+```
+#in 64-bit machine:
+./chantools compactdb --sourcedb $SOMEWHERE/channel.db --destdb $ELSEWHERE/channel.db
+
+#move new `channel.db` back in 32-bit lnd machine, and restart lnd.
+docker-compose up -d --force-recreate lnd
+```
 
 
 #### UPDATE 2021-10-19

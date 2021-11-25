@@ -1,4 +1,12 @@
 
+#### UPDATE 2021-11-25
+
++ channel.db size exceeded 2GB, which 32-bit compiled code will not be able to handle!
+```
+https://github.com/lightningnetwork/lnd/issues/5945
+```
+
+
 
 #### UPDATE 2021-10-19
 

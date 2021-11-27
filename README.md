@@ -18,6 +18,19 @@ https://github.com/lightningnetwork/lnd/issues/5945
 docker-compose up -d --force-recreate lnd
 ```
 
++ lnd was started and stopped multiple times
+    
+  + files in `lnd` folder was replaced by error due to user error, below issues helped.
+
+  + also, bump the fee up to force close the channels likely also helped.
+```
+https://github.com/lightningnetwork/lnd/issues/5347
+https://github.com/lightningnetwork/lnd/issues/4771
+
+lncli pendingchannels
+```
+
+
 
 #### UPDATE 2021-10-19
 

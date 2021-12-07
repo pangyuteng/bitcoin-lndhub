@@ -1,4 +1,12 @@
 
+
+#### UPDATE 2021-12-07
+
++ channel.db size exceeds 1GB, despite not having any channels open, resulting lnd erroring out.
+```
+https://github.com/lightningnetwork/lnd/issues/4811
+``` 
+
 #### UPDATE 2021-11-25
 
 # *** DO NOT ATTEMPT RUNNING Lightning on 32-bit OS! Below is my attempt, you will likely loose your funds once channel.db exceeds 1GB! ***

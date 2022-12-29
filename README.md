@@ -1,4 +1,6 @@
+#### UPDATE 2022-12-29
 
+bitcoin-core ver switched for PI4(ARM 64bit) in `bitcoind/Dockerfile`
 
 #### UPDATE 2021-12-07
 

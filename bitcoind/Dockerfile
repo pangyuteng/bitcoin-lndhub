@@ -5,8 +5,13 @@ RUN apt-get update && \
     apt-get install vim wget curl gnupg gosu git telnet -yq && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV TARGETPLATFORM=arm-linux-gnueabihf
-ENV BITCOIN_VERSION=22.0
+# for 32-bit raspberry pi3
+#ENV TARGETPLATFORM=arm-linux-gnueabihf
+#ENV BITCOIN_VERSION=22.0
+
+# for pi4
+ENV TARGETPLATFORM=aarch64-linux-gnu
+ENV BITCOIN_VERSION=24.0
 ENV PATH=/opt/bitcoin-${BITCOIN_VERSION}/bin:$PATH
 ENV BITCOIN_DATA=/home/bitcoin/.bitcoin
 ENV BITCOIN_CORE_SIGNATURE=01EA5486DE18A882D4C2684590C8019E36C2E964

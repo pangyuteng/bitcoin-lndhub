@@ -1,1 +1,1 @@
-docker-compose up -d --force-recreate core
+docker compose up -d --force-recreate core

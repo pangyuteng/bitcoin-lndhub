@@ -27,8 +27,8 @@ services:
         volumes:
             - /mnt/hdd/bitcoin:/root/.bitcoin
             - /run/tor:/run/tor
-        cpus: 0.5
-        mem_limit: 75M
+        #cpus: 0.5
+        #mem_limit: 75M
     lnd:
         image: lnd
         build:

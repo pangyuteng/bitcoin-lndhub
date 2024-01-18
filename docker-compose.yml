@@ -70,3 +70,14 @@ services:
         mem_limit: 100M
         environment:
             CONFIG: ${HUBCONFIG}
+    test-core:
+        image: bitcoind
+        build:
+            context: bitcoind
+            dockerfile: Dockerfile
+        command: bitcoind -testnet -rpcport=19832 -rpcbind=0.0.0.0
+        restart: always
+        network_mode: "host"
+        volumes:
+            - /mnt/hdd/bitcoin:/root/.bitcoin
+            - /run/tor:/run/tor

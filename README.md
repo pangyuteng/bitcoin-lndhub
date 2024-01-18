@@ -1,3 +1,11 @@
+
+#### UPDATE 2024-01-18
+
++ setup test-core service to sync testnet
+
+https://bitcoin.stackexchange.com/a/102077/105042
+https://bitcoin.stackexchange.com/a/78604/105042
+
 #### UPDATE 2022-12-29
 
 bitcoin-core ver switched for PI4(ARM 64bit) in `bitcoind/Dockerfile`
